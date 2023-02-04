@@ -16,7 +16,9 @@ function App() {
 
         // Get allowed guests
         try {
-            const response = await axios.get("/guests?" + pw);
+            const response = await axios.get(
+                "https://rsvp-9xe4.onrender.com//guests?" + pw
+            );
             setAllowedGuests(response.data.allowed);
             setDisplayError(false);
             setShowPasswordForm(false);
@@ -27,7 +29,7 @@ function App() {
 
     const handleRsvpFormSubmit = async (e, data) => {
         e.preventDefault();
-        await axios.post(`/rsvp`, { ...data });
+        await axios.post(`https://rsvp-9xe4.onrender.com/rsvp`, { ...data });
         setFormDone(true);
     };
     return (
