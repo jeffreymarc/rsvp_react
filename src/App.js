@@ -17,7 +17,7 @@ function App() {
         // Get allowed guests
         try {
             const response = await axios.get(
-                "https://rsvp-9xe4.onrender.com//guests?" + pw
+                "https://rsvp-9xe4.onrender.com/guests?" + pw
             );
             setAllowedGuests(response.data.allowed);
             setDisplayError(false);
