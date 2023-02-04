@@ -63,7 +63,7 @@ const RSVPForm = (props) => {
                             type="email"
                             name="email"
                             id="email"
-                            placeholder="Full Name"
+                            placeholder="johndoe@gmail.com"
                             class="formbold-form-input"
                             onChange={(e) => setEmail(e.target.value)}
                             required
