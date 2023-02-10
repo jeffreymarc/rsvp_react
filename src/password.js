@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
+import spinner from "./loading.gif";
 
 const PasswordForm = (props) => {
-    const { handleSubmitPassword, invalidPassword } = props;
+    const { handleSubmitPassword, invalidPassword, onSubmitButton } = props;
     const [password, setPassword] = useState("");
 
     const handleSubmit = async (e) => {
@@ -11,15 +12,15 @@ const PasswordForm = (props) => {
     };
 
     return (
-        <div class="formbold-main-wrapper">
-            <div class="formbold-form-wrapper">
+        <div className="formbold-main-wrapper">
+            <div className="formbold-form-wrapper">
                 <form onSubmit={handleSubmit}>
-                    <div class="flex flex-wrap formbold--mx-3">
-                        <div class="w-full sm:w-half formbold-px-3">
-                            <div class="formbold-mb-5">
+                    <div className="flex flex-wrap formbold--mx-3">
+                        <div className="w-full sm:w-half formbold-px-3">
+                            <div className="formbold-mb-5">
                                 <label
-                                    for="password"
-                                    class="formbold-form-label"
+                                    htmlFor="password"
+                                    className="formbold-form-label"
                                 >
                                     Password
                                 </label>
@@ -28,7 +29,7 @@ const PasswordForm = (props) => {
                                     name="password"
                                     id="password"
                                     placeholder="Password"
-                                    class="formbold-form-input"
+                                    className="formbold-form-input"
                                     onChange={(e) =>
                                         setPassword(e.target.value)
                                     }
@@ -36,7 +37,7 @@ const PasswordForm = (props) => {
                             </div>
                             {invalidPassword && (
                                 <div
-                                    class="formbold-form-label"
+                                    className="formbold-form-label"
                                     style={{ color: "red" }}
                                 >
                                     <p>"Sorry invalid password"</p>
@@ -44,29 +45,26 @@ const PasswordForm = (props) => {
                             )}
                         </div>
                     </div>
-                    <div>
-                        <button class="formbold-btn">Submit</button>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                        <button
+                            className="formbold-btn"
+                            disabled={onSubmitButton}
+                        >
+                            Submit{" "}
+                        </button>
+                        {onSubmitButton && (
+                            <img
+                                src={spinner}
+                                alt="Loading..."
+                                width={"50px"}
+                                style={{ marginRight: "10px" }}
+                            />
+                        )}
                     </div>
                 </form>
             </div>
         </div>
     );
-
-    // return (
-    //     <form onSubmit={handleSubmit}>
-    //         <div>
-    //             <label htmlFor="password">Password:</label>
-    //             <input
-    //                 type="password"
-    //                 id="password"
-    //                 value={password}
-    //                 onChange={(e) => setPassword(e.target.value)}
-    //             />
-    //         </div>
-    // 		{invalidPassword && <div style={{ color: "red" }}><p>"Sorry invalid password"</p></div>}
-    //         <button type="submit">Submit</button>
-    //     </form>
-    // );
 };
 
 export default PasswordForm;

@@ -9,6 +9,7 @@ function App() {
     const [displayError, setDisplayError] = useState(false);
     const [allowedGuests, setAllowedGuests] = useState(0);
     const [formDone, setFormDone] = useState(false);
+    const [isFetching, setIsFetching] = useState(false);
 
     const handleSubmitPassword = async (e, pass) => {
         const pw = pass.toUpperCase();
@@ -16,13 +17,16 @@ function App() {
 
         // Get allowed guests
         try {
+            setIsFetching(true);
             const response = await axios.get(
                 "https://rsvp-9xe4.onrender.com/guests?" + pw
             );
             setAllowedGuests(response.data.allowed);
             setDisplayError(false);
             setShowPasswordForm(false);
+            setIsFetching(false);
         } catch (error) {
+            setIsFetching(false);
             setDisplayError(true);
         }
     };
@@ -39,6 +43,7 @@ function App() {
                     class="formbold-form-wrapper"
                     handleSubmitPassword={handleSubmitPassword}
                     invalidPassword={displayError}
+                    onSubmitButton={isFetching}
                 ></PasswordForm>
             )}
             {!showPasswordForm && allowedGuests && !formDone && (
