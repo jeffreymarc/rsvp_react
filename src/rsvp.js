@@ -201,7 +201,7 @@ const RSVPForm = (props) => {
                                 }
                                 className="formbold-form-input"
                                 required
-                                placeholder="none"
+                                placeholder="Any allergies or food intolerances?"
                             />
                         </div>
                     )}
